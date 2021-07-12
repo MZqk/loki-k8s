@@ -47,7 +47,13 @@ spec:
           periodSeconds: 10
           successThreshold: 1
           timeoutSeconds: 1
-        resources: {}
+        resources: 
+          requests:
+            cpu: 100m 
+            memory: 16Mi
+          limits:
+            cpu: 200m
+            memory: 32Mi
         securityContext:
           readOnlyRootFilesystem: true
           runAsGroup: 0

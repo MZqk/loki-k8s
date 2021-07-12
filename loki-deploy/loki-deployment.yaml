@@ -32,7 +32,13 @@ spec:
         - containerPort: 3100
           name: http-metrics
           protocol: TCP
-        resources: {}
+        resources: 
+          requests:
+            cpu: 100m
+            memory: 128Mi
+          limits:
+            cpu: 500m
+            memory: 1Gi
         securityContext:
           readOnlyRootFilesystem: true
         terminationMessagePath: /dev/termination-log
