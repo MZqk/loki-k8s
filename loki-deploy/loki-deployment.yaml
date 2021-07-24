@@ -21,7 +21,6 @@ spec:
         name: loki
         release: loki
     spec:
-      nodeName: mayi1
       containers:
       - args:
         - -config.file=/etc/loki/config.yaml
