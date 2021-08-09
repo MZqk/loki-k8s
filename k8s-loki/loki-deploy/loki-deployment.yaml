@@ -1,0 +1,64 @@
+apiVersion: apps/v1beta1
+kind: Deployment
+metadata:
+  annotations:
+  labels:
+    app: loki
+    release: loki
+  name: loki
+  namespace: default
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: loki
+      release: loki
+  template:
+    metadata:
+      annotations:
+      labels:
+        app: loki
+        name: loki
+        release: loki
+    spec:
+      containers:
+      - args:
+        - -config.file=/etc/loki/config.yaml
+        image: grafana/loki:2.1.0
+        imagePullPolicy: IfNotPresent
+        name: loki
+        ports:
+        - containerPort: 3100
+          name: http-metrics
+          protocol: TCP
+        resources: 
+          requests:
+            cpu: 100m
+            memory: 128Mi
+          limits:
+            cpu: 500m
+            memory: 1Gi
+        securityContext:
+          readOnlyRootFilesystem: true
+        terminationMessagePath: /dev/termination-log
+        terminationMessagePolicy: File
+        volumeMounts:
+        - mountPath: /etc/loki
+          name: config
+        - mountPath: /data/loki
+          name: storage
+      dnsPolicy: ClusterFirst
+      restartPolicy: Always
+      schedulerName: default-scheduler
+      terminationGracePeriodSeconds: 4800
+      securityContext:
+        fsGroup: 0
+        runAsUser: 0
+      volumes:
+      - name: config
+        configMap:
+          defaultMode: 420
+          name: loki
+      - name: storage
+        hostPath:
+          path:  /home/guandata/data/loki
