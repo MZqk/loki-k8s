@@ -40,13 +40,6 @@ data:
       - action: labelmap
         regex: __meta_kubernetes_pod_label_(.+)
       - action: replace
-        replacement: $1
-        separator: /
-        source_labels:
-        - __meta_kubernetes_namespace
-        - __service__
-        target_label: job
-      - action: replace
         source_labels:
         - __meta_kubernetes_namespace
         target_label: namespace
@@ -58,7 +51,7 @@ data:
         source_labels:
         - __meta_kubernetes_pod_container_name
         target_label: container
-      - replacement: /var/log/containers/*$1/*.log
+      - replacement: /var/log/containers/*.log
         separator: /
         source_labels:
         - __meta_kubernetes_pod_uid
