@@ -20,6 +20,8 @@ data:
     - job_name: kubernetes-pods-app
       pipeline_stages:
         - docker: {}
+        - labeldrop:
+          - stream 
       kubernetes_sd_configs:
       - role: pod
       relabel_configs:
@@ -40,6 +42,13 @@ data:
       - action: labelmap
         regex: __meta_kubernetes_pod_label_(.+)
       - action: replace
+        replacement: $1
+        separator: /
+        source_labels:
+        - __meta_kubernetes_namespace
+        - __service__
+        target_label: job
+      - action: replace
         source_labels:
         - __meta_kubernetes_namespace
         target_label: namespace
@@ -51,7 +60,7 @@ data:
         source_labels:
         - __meta_kubernetes_pod_container_name
         target_label: container
-      - replacement: /var/log/containers/*.log
+      - replacement: /var/log/pods/*$1/*.log
         separator: /
         source_labels:
         - __meta_kubernetes_pod_uid

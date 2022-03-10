@@ -20,6 +20,8 @@ data:
     - job_name: kubernetes-pods-app
       pipeline_stages:
         - docker: {}
+        - labeldrop: 
+          - stream
       kubernetes_sd_configs:
       - role: pod
       relabel_configs:
@@ -62,7 +64,6 @@ data:
         separator: /
         source_labels:
         - __meta_kubernetes_pod_uid
-        - __meta_kubernetes_pod_container_name
         target_label: __path__
 kind: ConfigMap
 metadata:
