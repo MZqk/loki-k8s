@@ -1,0 +1,974 @@
+{
+    "annotations": {
+      "list": [
+        {
+          "builtIn": 1,
+          "datasource": "-- Grafana --",
+          "enable": true,
+          "hide": true,
+          "iconColor": "rgba(0, 211, 255, 1)",
+          "name": "Annotations & Alerts",
+          "type": "dashboard"
+        }
+      ]
+    },
+    "editable": true,
+    "gnetId": null,
+    "graphTooltip": 0,
+    "id": 6,
+    "iteration": 1646901100737,
+    "links": [],
+    "panels": [
+      {
+        "aliasColors": {},
+        "breakPoint": "50%",
+        "cacheTimeout": null,
+        "combine": {
+          "label": "Others",
+          "threshold": 0
+        },
+        "datasource": "Loki",
+        "description": "",
+        "fontSize": "80%",
+        "format": "short",
+        "gridPos": {
+          "h": 8,
+          "w": 12,
+          "x": 0,
+          "y": 0
+        },
+        "id": 16,
+        "interval": null,
+        "legend": {
+          "header": "",
+          "percentage": false,
+          "percentageDecimals": null,
+          "show": true,
+          "sideWidth": 200,
+          "sort": "current",
+          "sortDesc": false,
+          "values": false
+        },
+        "legendType": "Right side",
+        "links": [],
+        "nullPointMode": "connected",
+        "options": {},
+        "pieType": "pie",
+        "repeat": null,
+        "repeatDirection": "h",
+        "strokeWidth": "",
+        "targets": [
+          {
+            "expr": "sum(count_over_time(({container=~\"$container\"})[$interval])) by (container)",
+            "refId": "A"
+          }
+        ],
+        "timeFrom": null,
+        "timeShift": null,
+        "title": "日志生成分布",
+        "type": "grafana-piechart-panel",
+        "valueName": "current"
+      },
+      {
+        "aliasColors": {},
+        "breakPoint": "50%",
+        "cacheTimeout": null,
+        "combine": {
+          "label": "Others",
+          "threshold": 0
+        },
+        "datasource": "Loki",
+        "description": "",
+        "fontSize": "80%",
+        "format": "short",
+        "gridPos": {
+          "h": 8,
+          "w": 12,
+          "x": 12,
+          "y": 0
+        },
+        "id": 17,
+        "interval": null,
+        "legend": {
+          "header": "",
+          "percentage": false,
+          "percentageDecimals": null,
+          "show": true,
+          "sideWidth": 200,
+          "sort": "current",
+          "sortDesc": false,
+          "values": false
+        },
+        "legendType": "Right side",
+        "links": [],
+        "nullPointMode": "connected",
+        "options": {},
+        "pieType": "pie",
+        "repeatDirection": "h",
+        "strokeWidth": "",
+        "targets": [
+          {
+            "expr": "sum(count_over_time(({container=~\"$container\"}|~\"(error|ERROR)\"!~\"(info|INFO)\") [$interval])) by (container)",
+            "refId": "A"
+          }
+        ],
+        "timeFrom": null,
+        "timeShift": null,
+        "title": "错误日志分布",
+        "type": "grafana-piechart-panel",
+        "valueName": "current"
+      },
+      {
+        "datasource": "Loki",
+        "description": "",
+        "gridPos": {
+          "h": 8,
+          "w": 12,
+          "x": 0,
+          "y": 8
+        },
+        "id": 14,
+        "options": {
+          "fieldOptions": {
+            "calcs": [
+              "last"
+            ],
+            "defaults": {
+              "mappings": [],
+              "max": 100,
+              "min": 0,
+              "thresholds": {
+                "0": {
+                  "color": "green",
+                  "value": null
+                },
+                "1": {
+                  "color": "red",
+                  "value": 80
+                },
+                "mode": "absolute",
+                "steps": [
+                  {
+                    "color": "green",
+                    "value": null
+                  }
+                ]
+              }
+            },
+            "override": {},
+            "overrides": [],
+            "values": false
+          },
+          "orientation": "auto",
+          "showThresholdLabels": false,
+          "showThresholdMarkers": true
+        },
+        "pluginVersion": "6.3.0-beta4",
+        "targets": [
+          {
+            "expr": "sum(count_over_time(({container=~\"$container\"})[$interval]))",
+            "refId": "A"
+          }
+        ],
+        "timeFrom": null,
+        "timeShift": null,
+        "title": "日志数",
+        "type": "gauge"
+      },
+      {
+        "datasource": "Loki",
+        "description": "",
+        "gridPos": {
+          "h": 8,
+          "w": 6,
+          "x": 12,
+          "y": 8
+        },
+        "id": 9,
+        "options": {
+          "fieldOptions": {
+            "calcs": [
+              "last"
+            ],
+            "defaults": {
+              "mappings": [],
+              "max": 100,
+              "min": 0,
+              "thresholds": {
+                "0": {
+                  "color": "green",
+                  "value": null
+                },
+                "1": {
+                  "color": "red",
+                  "value": 80
+                },
+                "mode": "absolute",
+                "steps": [
+                  {
+                    "color": "green",
+                    "value": null
+                  }
+                ]
+              }
+            },
+            "override": {},
+            "overrides": [],
+            "values": false
+          },
+          "orientation": "auto",
+          "showThresholdLabels": false,
+          "showThresholdMarkers": true
+        },
+        "pluginVersion": "6.3.0-beta4",
+        "targets": [
+          {
+            "expr": "sum(count_over_time(({container=~\"$container\"}|~\"(error|ERROR)\"!~\"(info|INFO)\") [$interval]))",
+            "refId": "A"
+          }
+        ],
+        "timeFrom": null,
+        "timeShift": null,
+        "title": "错误日志数",
+        "type": "gauge"
+      },
+      {
+        "cacheTimeout": null,
+        "datasource": "Loki",
+        "description": "",
+        "gridPos": {
+          "h": 8,
+          "w": 6,
+          "x": 18,
+          "y": 8
+        },
+        "id": 10,
+        "links": [],
+        "options": {
+          "fieldOptions": {
+            "calcs": [
+              "last"
+            ],
+            "defaults": {
+              "mappings": [],
+              "max": 100,
+              "min": 0,
+              "nullValueMode": "connected",
+              "thresholds": {
+                "0": {
+                  "color": "green",
+                  "value": null
+                },
+                "1": {
+                  "color": "red",
+                  "value": 80
+                },
+                "mode": "absolute",
+                "steps": [
+                  {
+                    "color": "green",
+                    "value": null
+                  },
+                  {
+                    "color": "#EAB839",
+                    "value": 1
+                  },
+                  {
+                    "color": "red",
+                    "value": 10
+                  }
+                ]
+              },
+              "unit": "percent"
+            },
+            "override": {},
+            "overrides": [],
+            "values": false
+          },
+          "orientation": "horizontal",
+          "showThresholdLabels": false,
+          "showThresholdMarkers": true
+        },
+        "pluginVersion": "6.3.0-beta4",
+        "targets": [
+          {
+            "expr": "sum(count_over_time(({container=~\"$container\"}|~\"(error|ERROR)\"!~\"(info|INFO)\")[$interval]))*100/sum(count_over_time(({container=~\"$container\"})[$interval]))",
+            "refId": "A"
+          }
+        ],
+        "timeFrom": null,
+        "timeShift": null,
+        "title": "错误日志总占比",
+        "type": "gauge"
+      },
+      {
+        "aliasColors": {},
+        "bars": false,
+        "cacheTimeout": null,
+        "dashLength": 10,
+        "dashes": false,
+        "datasource": "Loki",
+        "fill": 1,
+        "fillGradient": 0,
+        "gridPos": {
+          "h": 8,
+          "w": 24,
+          "x": 0,
+          "y": 16
+        },
+        "hiddenSeries": false,
+        "id": 6,
+        "legend": {
+          "avg": false,
+          "current": false,
+          "max": false,
+          "min": false,
+          "rightSide": true,
+          "show": true,
+          "total": false,
+          "values": false
+        },
+        "lines": true,
+        "linewidth": 1,
+        "links": [],
+        "maxDataPoints": "",
+        "nullPointMode": "null",
+        "options": {
+          "dataLinks": []
+        },
+        "percentage": false,
+        "pluginVersion": "6.7.0",
+        "pointradius": 2,
+        "points": false,
+        "renderer": "flot",
+        "seriesOverrides": [],
+        "spaceLength": 10,
+        "stack": false,
+        "steppedLine": false,
+        "targets": [
+          {
+            "expr": "sum(count_over_time({container=~\"$container\"} [$interval])) by(container)",
+            "hide": false,
+            "refId": "A"
+          }
+        ],
+        "thresholds": [],
+        "timeFrom": null,
+        "timeRegions": [],
+        "timeShift": null,
+        "title": "日志生成速率",
+        "tooltip": {
+          "shared": true,
+          "sort": 0,
+          "value_type": "individual"
+        },
+        "type": "graph",
+        "xaxis": {
+          "buckets": null,
+          "mode": "time",
+          "name": null,
+          "show": true,
+          "values": []
+        },
+        "yaxes": [
+          {
+            "format": "short",
+            "label": null,
+            "logBase": 1,
+            "max": null,
+            "min": null,
+            "show": true
+          },
+          {
+            "format": "short",
+            "label": null,
+            "logBase": 1,
+            "max": null,
+            "min": null,
+            "show": true
+          }
+        ],
+        "yaxis": {
+          "align": false,
+          "alignLevel": null
+        }
+      },
+      {
+        "aliasColors": {},
+        "bars": false,
+        "cacheTimeout": null,
+        "dashLength": 10,
+        "dashes": false,
+        "datasource": "Loki",
+        "fill": 1,
+        "fillGradient": 0,
+        "gridPos": {
+          "h": 8,
+          "w": 24,
+          "x": 0,
+          "y": 24
+        },
+        "hiddenSeries": false,
+        "id": 7,
+        "legend": {
+          "avg": false,
+          "current": false,
+          "max": false,
+          "min": false,
+          "rightSide": true,
+          "show": true,
+          "total": false,
+          "values": false
+        },
+        "lines": true,
+        "linewidth": 1,
+        "links": [],
+        "maxDataPoints": "",
+        "nullPointMode": "null",
+        "options": {
+          "dataLinks": []
+        },
+        "percentage": false,
+        "pluginVersion": "6.7.0",
+        "pointradius": 2,
+        "points": false,
+        "renderer": "flot",
+        "seriesOverrides": [],
+        "spaceLength": 10,
+        "stack": false,
+        "steppedLine": false,
+        "targets": [
+          {
+            "expr": "sum(count_over_time(({container=~\"$container\"}|~\"(error|ERROR)\"!~\"(info|INFO)\")[$interval])) by (container)",
+            "refId": "A"
+          }
+        ],
+        "thresholds": [],
+        "timeFrom": null,
+        "timeRegions": [],
+        "timeShift": null,
+        "title": "错误日志生成速率",
+        "tooltip": {
+          "shared": true,
+          "sort": 0,
+          "value_type": "individual"
+        },
+        "type": "graph",
+        "xaxis": {
+          "buckets": null,
+          "mode": "time",
+          "name": null,
+          "show": true,
+          "values": []
+        },
+        "yaxes": [
+          {
+            "format": "short",
+            "label": null,
+            "logBase": 1,
+            "max": null,
+            "min": null,
+            "show": true
+          },
+          {
+            "format": "short",
+            "label": null,
+            "logBase": 1,
+            "max": null,
+            "min": null,
+            "show": true
+          }
+        ],
+        "yaxis": {
+          "align": false,
+          "alignLevel": null
+        }
+      },
+      {
+        "cacheTimeout": null,
+        "columns": [
+          {
+            "text": "Current",
+            "value": "current"
+          }
+        ],
+        "datasource": "Loki",
+        "description": "(粒度固定24h)仅对部份日志进行格式化处理，筛选出需关注的内容",
+        "fontSize": "100%",
+        "gridPos": {
+          "h": 11,
+          "w": 24,
+          "x": 0,
+          "y": 32
+        },
+        "hideTimeOverride": false,
+        "id": 12,
+        "links": [],
+        "maxDataPoints": "",
+        "options": {},
+        "pageSize": 14,
+        "pluginVersion": "6.7.0",
+        "showHeader": true,
+        "sort": {
+          "col": 0,
+          "desc": true
+        },
+        "styles": [
+          {
+            "alias": "错误内容",
+            "align": "auto",
+            "colorMode": null,
+            "colors": [
+              "rgba(245, 54, 54, 0.9)",
+              "rgba(237, 129, 40, 0.89)",
+              "rgba(50, 172, 45, 0.97)"
+            ],
+            "dateFormat": "YYYY-MM-DD HH:mm:ss",
+            "decimals": 2,
+            "link": false,
+            "mappingType": 1,
+            "pattern": "Metric",
+            "thresholds": [],
+            "type": "string",
+            "unit": "short"
+          },
+          {
+            "alias": "次数",
+            "align": "auto",
+            "colorMode": null,
+            "colors": [
+              "rgba(245, 54, 54, 0.9)",
+              "rgba(237, 129, 40, 0.89)",
+              "rgba(50, 172, 45, 0.97)"
+            ],
+            "dateFormat": "YYYY-MM-DD HH:mm:ss",
+            "decimals": 2,
+            "mappingType": 1,
+            "pattern": "Current",
+            "thresholds": [],
+            "type": "string",
+            "unit": "short"
+          }
+        ],
+        "targets": [
+          {
+            "expr": "topk(10,sum by(container,dingding)(count_over_time({container=\"guandata-server\"}|~\"(error|ERROR)\"!~\"(info|INFO)\"|=\"DingTalk\"|regexp \"(?P<dingding>DingTalk.*)\"|line_format \"{{.dingding}}\" [24h])))",
+            "hide": false,
+            "refId": "A"
+          },
+          {
+            "expr": "topk(10,sum by(container,clickhouse)(count_over_time({container=\"guandata-server\"}|~\"(error|ERROR)\"!~\"(info|INFO)\"|=\"clickhouse\"|regexp \"(?P<message>error.*)\"|label_format clickhouse=message|line_format \"{{.clickhouse}}\"  [24h])))",
+            "hide": false,
+            "refId": "B"
+          },
+          {
+            "expr": "topk(10,sum by(container,cassandra)(count_over_time({container=\"guandata-server\"}|~\"(error|ERROR)\"!~\"(info|INFO)\"|=\"Task CASSANDRA\"!=\"Exception happens in Task CASSANDRA with id\"|regexp \"(?P<message1>\\\\{.*\\\\})\"|line_format \"{{.message1}}\"|json|label_format cassandra=message|line_format \"{{.cassandra}}\"  [24h])))",
+            "hide": false,
+            "refId": "C"
+          }
+        ],
+        "timeFrom": null,
+        "timeShift": null,
+        "title": "错误类型概要",
+        "transform": "timeseries_aggregations",
+        "type": "table"
+      },
+      {
+        "cacheTimeout": null,
+        "datasource": "Loki",
+        "gridPos": {
+          "h": 8,
+          "w": 12,
+          "x": 0,
+          "y": 43
+        },
+        "id": 2,
+        "links": [],
+        "maxDataPoints": "200",
+        "options": {
+          "showLabels": false,
+          "showTime": true,
+          "sortOrder": "Descending",
+          "wrapLogMessage": true
+        },
+        "pluginVersion": "6.7.0",
+        "targets": [
+          {
+            "expr": "{container=~\"$container\"}",
+            "refId": "A"
+          }
+        ],
+        "timeFrom": null,
+        "timeShift": null,
+        "title": "Pod日志预览",
+        "type": "logs"
+      },
+      {
+        "datasource": "Loki",
+        "gridPos": {
+          "h": 8,
+          "w": 12,
+          "x": 12,
+          "y": 43
+        },
+        "id": 4,
+        "maxDataPoints": "200",
+        "options": {
+          "showLabels": false,
+          "showTime": true,
+          "sortOrder": "Descending",
+          "wrapLogMessage": true
+        },
+        "targets": [
+          {
+            "expr": "{container=~\"$container\"}|~\"(error|ERROR)\"!~\"(info|INFO)\"",
+            "refId": "A"
+          }
+        ],
+        "timeFrom": null,
+        "timeShift": null,
+        "title": "错误日志预览",
+        "type": "logs"
+      }
+    ],
+    "schemaVersion": 19,
+    "style": "dark",
+    "tags": [],
+    "templating": {
+      "list": [
+        {
+          "allValue": null,
+          "current": {
+            "text": "default",
+            "value": "default"
+          },
+          "datasource": "Loki",
+          "definition": "label_values(namespace)",
+          "hide": 2,
+          "includeAll": true,
+          "index": -1,
+          "label": "命名空间",
+          "multi": false,
+          "name": "namespace",
+          "options": [],
+          "query": "label_values(namespace)",
+          "refresh": 0,
+          "regex": "",
+          "skipUrlSync": false,
+          "sort": 0,
+          "tagValuesQuery": "",
+          "tags": [],
+          "tagsQuery": "",
+          "type": "query",
+          "useTags": false
+        },
+        {
+          "allValue": ".*",
+          "current": {},
+          "datasource": "Loki",
+          "definition": "label_values({app=~\".+\"}, app)",
+          "hide": 2,
+          "includeAll": true,
+          "index": -1,
+          "label": "应用（标签选择）",
+          "multi": false,
+          "name": "label_app",
+          "options": [],
+          "query": "label_values({app=~\".+\"}, app)",
+          "refresh": 0,
+          "regex": "",
+          "skipUrlSync": false,
+          "sort": 0,
+          "tagValuesQuery": "",
+          "tags": [],
+          "tagsQuery": "",
+          "type": "query",
+          "useTags": false
+        },
+        {
+          "allValue": "",
+          "current": {
+            "text": "All",
+            "value": [
+              "$__all"
+            ]
+          },
+          "datasource": "Loki",
+          "definition": "label_values(container)",
+          "hide": 0,
+          "includeAll": true,
+          "index": -1,
+          "label": "容器",
+          "multi": true,
+          "name": "container",
+          "options": [
+            {
+              "selected": true,
+              "text": "All",
+              "value": "$__all"
+            },
+            {
+              "selected": false,
+              "text": "guandata-admin",
+              "value": "guandata-admin"
+            },
+            {
+              "selected": false,
+              "text": "guandata-server",
+              "value": "guandata-server"
+            },
+            {
+              "selected": false,
+              "text": "nginx",
+              "value": "nginx"
+            },
+            {
+              "selected": false,
+              "text": "spark-jobserver",
+              "value": "spark-jobserver"
+            },
+            {
+              "selected": false,
+              "text": "survey-engine",
+              "value": "survey-engine"
+            },
+            {
+              "selected": false,
+              "text": "web",
+              "value": "web"
+            },
+            {
+              "selected": false,
+              "text": "zipkin-server",
+              "value": "zipkin-server"
+            }
+          ],
+          "query": "label_values(container)",
+          "refresh": 0,
+          "regex": "^(?!promtail|prometheus|alertmanager|node-exporter|grafana|oklog|log-test|mc|agent|cluster-registe|install-cni|kube-flannel).*$",
+          "skipUrlSync": false,
+          "sort": 5,
+          "tagValuesQuery": ".*",
+          "tags": [],
+          "tagsQuery": ".*",
+          "type": "query",
+          "useTags": false
+        },
+        {
+          "allValue": ".*",
+          "current": {
+            "text": "alertmanager-7bdcf88994-29s9n",
+            "value": "alertmanager-7bdcf88994-29s9n"
+          },
+          "datasource": "Loki",
+          "definition": "label_values(container_network_receive_bytes_total{namespace=~\"$namespace\"},pod)",
+          "hide": 2,
+          "includeAll": false,
+          "index": -1,
+          "label": "Pod",
+          "multi": false,
+          "name": "pod_name",
+          "options": [
+            {
+              "selected": true,
+              "text": "alertmanager-7bdcf88994-29s9n",
+              "value": "alertmanager-7bdcf88994-29s9n"
+            },
+            {
+              "selected": false,
+              "text": "grafana-6f466dcb4-xgrrz",
+              "value": "grafana-6f466dcb4-xgrrz"
+            },
+            {
+              "selected": false,
+              "text": "guandata-admin-deployment-b9db675df-vcdcc",
+              "value": "guandata-admin-deployment-b9db675df-vcdcc"
+            },
+            {
+              "selected": false,
+              "text": "guandata-server-deployment-54cf47fc7c-gjctb",
+              "value": "guandata-server-deployment-54cf47fc7c-gjctb"
+            },
+            {
+              "selected": false,
+              "text": "guandata-server-deployment-54cf47fc7c-m269n",
+              "value": "guandata-server-deployment-54cf47fc7c-m269n"
+            },
+            {
+              "selected": false,
+              "text": "guandata-server-deployment-7c56dcf959-8cvzg",
+              "value": "guandata-server-deployment-7c56dcf959-8cvzg"
+            },
+            {
+              "selected": false,
+              "text": "guandata-web-deployment-d9cbb7b68-m9xzw",
+              "value": "guandata-web-deployment-d9cbb7b68-m9xzw"
+            },
+            {
+              "selected": false,
+              "text": "log-test-deployment-7d4f94457-8vgfw",
+              "value": "log-test-deployment-7d4f94457-8vgfw"
+            },
+            {
+              "selected": false,
+              "text": "loki-promtail-bch6z",
+              "value": "loki-promtail-bch6z"
+            },
+            {
+              "selected": false,
+              "text": "loki-promtail-x496x",
+              "value": "loki-promtail-x496x"
+            },
+            {
+              "selected": false,
+              "text": "minio-7c77dd4445-jpb2v",
+              "value": "minio-7c77dd4445-jpb2v"
+            },
+            {
+              "selected": false,
+              "text": "monitor-server-deployment-79694f5798-vrcts",
+              "value": "monitor-server-deployment-79694f5798-vrcts"
+            },
+            {
+              "selected": false,
+              "text": "oklog-server-hzjs5",
+              "value": "oklog-server-hzjs5"
+            },
+            {
+              "selected": false,
+              "text": "spark-jobserver-controller-5654bd4b84-9gms9",
+              "value": "spark-jobserver-controller-5654bd4b84-9gms9"
+            },
+            {
+              "selected": false,
+              "text": "zipkin-server-deployment-7dfbd67b84-q5b77",
+              "value": "zipkin-server-deployment-7dfbd67b84-q5b77"
+            }
+          ],
+          "query": "label_values(container_network_receive_bytes_total{namespace=~\"$namespace\"},pod)",
+          "refresh": 0,
+          "regex": "",
+          "skipUrlSync": false,
+          "sort": 0,
+          "tagValuesQuery": "",
+          "tags": [],
+          "tagsQuery": "",
+          "type": "query",
+          "useTags": false
+        },
+        {
+          "auto": false,
+          "auto_count": 30,
+          "auto_min": "10s",
+          "current": {
+            "text": "1h",
+            "value": "1h"
+          },
+          "hide": 0,
+          "label": "聚合时间",
+          "name": "interval",
+          "options": [
+            {
+              "selected": false,
+              "text": "1d",
+              "value": "1d"
+            },
+            {
+              "selected": false,
+              "text": "1s",
+              "value": "1s"
+            },
+            {
+              "selected": false,
+              "text": "10s",
+              "value": "10s"
+            },
+            {
+              "selected": false,
+              "text": "1m",
+              "value": "1m"
+            },
+            {
+              "selected": true,
+              "text": "1h",
+              "value": "1h"
+            },
+            {
+              "selected": false,
+              "text": "12h",
+              "value": "12h"
+            },
+            {
+              "selected": false,
+              "text": "7d",
+              "value": "7d"
+            }
+          ],
+          "query": "1d,1s,10s,1m,1h,12h,7d",
+          "refresh": 2,
+          "skipUrlSync": false,
+          "type": "interval"
+        },
+        {
+          "allValue": ".*",
+          "current": {
+            "selected": false,
+            "text": "All",
+            "value": "$__all"
+          },
+          "datasource": "Loki",
+          "definition": "label_values({pod=\"$pod_name\"}, stream)",
+          "hide": 2,
+          "includeAll": true,
+          "index": -1,
+          "label": "日志流（Pod）",
+          "multi": false,
+          "name": "pod_stream",
+          "options": [
+            {
+              "selected": true,
+              "text": "All",
+              "value": "$__all"
+            },
+            {
+              "selected": false,
+              "text": "stderr",
+              "value": "stderr"
+            },
+            {
+              "selected": false,
+              "text": "stdout",
+              "value": "stdout"
+            }
+          ],
+          "query": "label_values({pod=\"$pod_name\"}, stream)",
+          "refresh": 0,
+          "regex": "",
+          "skipUrlSync": false,
+          "sort": 0,
+          "tagValuesQuery": "",
+          "tags": [],
+          "tagsQuery": "",
+          "type": "query",
+          "useTags": false
+        }
+      ]
+    },
+    "time": {
+      "from": "now-24h",
+      "to": "now"
+    },
+    "timepicker": {
+      "refresh_intervals": [
+        "5s",
+        "1m",
+        "15m",
+        "1h",
+        "1d"
+      ]
+    },
+    "timezone": "",
+    "title": "Loki 日志看板",
+    "uid": "OthEvvrGz",
+    "version": 1
+  }
