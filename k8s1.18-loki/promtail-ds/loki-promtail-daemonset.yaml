@@ -53,7 +53,7 @@ spec:
             memory: 16Mi
           limits:
             cpu: 500m
-            memory: 128Mi
+            memory: 256Mi
         securityContext:
           readOnlyRootFilesystem: true
           runAsGroup: 0
